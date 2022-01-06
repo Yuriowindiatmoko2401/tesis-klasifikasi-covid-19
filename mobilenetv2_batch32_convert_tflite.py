@@ -1,4 +1,5 @@
 import tensorflow as tf
+<<<<<<< HEAD
 import numpy as np
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 import os
@@ -78,3 +79,19 @@ def main():
 
 if __name__ == '__main__':
     main()
+=======
+
+saved_model_dir = "./mobilenetv2_batch32.tf"
+converter = tf.lite.TFLiteConverter.from_saved_model(
+    saved_model_dir, signature_keys=['serving_default'])
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+converter.experimental_new_converter = True
+converter.target_spec.supported_ops = [
+    tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+tflite_model = converter.convert()
+
+fo = open(
+    "./mobilenetv2_batch32_model.tflite", "wb")
+fo.write(tflite_model)
+fo.close
+>>>>>>> cfe7f968c009218a13f0e2bd2d2a8f2ef2b606f2
