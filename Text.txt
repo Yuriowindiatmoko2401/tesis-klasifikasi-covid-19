@@ -1,0 +1,4 @@
+python metadata_writer_for_image_classifier.py \
+    --model_file=./model_without_metadata/model.tflite \
+    --label_file=./model_without_metadata/labels.txt \
+    --export_directory=model_with_metadata
